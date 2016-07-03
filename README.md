@@ -10,6 +10,7 @@
 ## Usage
 To start with, you have to initialize a Component with webdriver and component query (CQ):
 ```python
+	from cersei.Component import Component
     form = Component(self.driver, 'loginForm')
 ```
 Note: CQ have to uniquely determine your component. Otherwise first of all fitting components will be used.
