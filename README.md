@@ -15,7 +15,7 @@ To start with, you have to initialize a Component with webdriver and component q
 ```
 Note: CQ have to uniquely determine your component. Otherwise first of all fitting components will be used.
 
-You can use various methods like `up` and `child` to traverse throug components:
+You can use various methods like `up` and `child` to traverse through components:
 ```python
     email_field = form.down('textfield[emptyText="Enter your email"]')
     form_panel = form.up('panel')
