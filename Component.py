@@ -112,7 +112,7 @@ class Component:
     def safe_call(self, callee):
         """
         Execute arbitrary method or retrieve component's property with fallback to None in case of JS runtime error.
-        NB: Be careful, do not retrieve complex JS objects like components - possible recursive stack overflow
+        NB: Be careful, do not retrieve complex JS objects like components - possible maximum call stack size exceed
         :param callee: str string representation of method(with brackets) or property of a component
         :rtype:
         """
@@ -124,3 +124,9 @@ class Component:
         }}
         """.format(cmp=self.get_cmp(), callee=callee)
         return self._driver.execute_script(code)
+
+    def __getattr__(self, item):
+        """
+        Hook any non-class property access and transit it to JS
+        """
+        return self.safe_call(item)

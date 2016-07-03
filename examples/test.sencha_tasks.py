@@ -7,7 +7,7 @@ from Component import Component
 
 class TaskCreationTest(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.PhantomJS(executable_path='../phantomjs.exe')
+        self.driver = webdriver.PhantomJS(executable_path='phantomjs.exe')
         self.driver.set_window_size(1920, 1080)
 
     def test_task_creation(self):
@@ -23,6 +23,7 @@ class TaskCreationTest(unittest.TestCase):
         new_task_name = 'Test task from selenium'
         # Filling up new test task fields
         new_task_form = Component(self.driver, 'taskForm')
+        WebDriverWait(self.driver, 5).until(lambda d: new_task_form.rendered)
 
         task_title = new_task_form.down('textfield[emptyText="Add a new task"]')
         task_title.get_element().find_element_by_xpath('.//input').send_keys(new_task_name)
